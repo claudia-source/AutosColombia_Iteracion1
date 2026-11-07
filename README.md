@@ -1,19 +1,39 @@
-# Sistema de Parqueadero Autos Colombia - Iteración 1
+# Sistema de Información y Control Operativo — Parqueadero "Autos Colombia"
 
-Este repositorio contiene la implementación del prototipo backend de la **Iteración 1** para el parqueadero "Autos Colombia", enfocado en el control de entrada y salida de vehículos.
+Este repositorio contiene la arquitectura, diagramas UML, modelos de datos y la API REST en Flask desarrollada para la gestión de operaciones del Parqueadero Autos Colombia.
 
-## Estructura del Proyecto
-- `app.py`: Servidor API REST con desarrollo en Python Flask y SQLite.
-- `requirements.txt`: Lista de dependencias del proyecto.
+## 🚀 Alcance por Iteraciones
 
-## Pasos para Ejecutar
-1. Clonar el repositorio:
-   `git clone https://github.com/claudia-source/AutosColombia_Iteracion1.git`
-2. Instalar dependencias:
-   `pip install -r requirements.txt`
-3. Iniciar el servidor:
-   `python app.py`
-4. Probar endpoints en `http://localhost:5000`:
-   - `POST /api/entrada` -> Registrar ingreso.
-   - `POST /api/salida` -> Registrar salida.
-   - `GET /api/celdas` -> Consultar disponibilidad.
+### 🔹 Iteración 1 (Entregada)
+- **HU-01 / RF-01, RF-02, RF-03:** Registro de Entrada de Vehículos y asignación de celdas.
+- **HU-02 / RF-04:** Registro de Salida de Vehículos y liberación de espacios.
+- **HU-03 / RF-05:** Tablero Visual de Disponibilidad de Celdas en Tiempo Real.
+
+### 🔹 Iteración 2 (Entregable Actual)
+- **HU-04 / RF-06:** Gestión y Administración de Usuarios (CRUD, asignación de roles Administrador/Operador).
+- **HU-05 / RF-07 / RNF-04:** Autenticación de Usuarios con hashing seguro de contraseñas (`Werkzeug PBKDF2`).
+- **HU-06 / RF-08:** Parametrización y Alta de Nuevas Celdas según tipo de vehículo y bloque.
+- **HU-07 / RF-09:** Control del Estado Operativo de Celdas (`LIBRE`, `OCUPADA`, `MANTENIMIENTO`, `INHABILITADA`).
+
+## 🛠️ Tecnologías e Infraestructura
+- **Lenguaje / Framework:** Python 3.12 + Flask Framework
+- **Seguridad:** Hashing seguro con Werkzeug Security
+- **Modelado UML:** StarUML / PlantUML (Casos de Uso, Secuencia y Componentes)
+- **Prototipado UI/UX:** Figma (Mockups interactivos de alta fidelidad)
+- **Control de Versiones:** Git + GitHub
+
+## 📡 Endpoints Disponibles en la API REST
+
+| Módulo | Método | Endpoint | Descripción |
+| :--- | :--- | :--- | :--- |
+| **Portería** | `POST` | `/api/entrada` | Registrar entrada de vehículo y ocupar celda. |
+| **Portería** | `POST` | `/api/salida` | Registrar salida de vehículo y liberar celda. |
+| **Auth** | `POST` | `/api/login` | Validar credenciales de usuario e iniciar sesión. |
+| **Usuarios** | `GET / POST` | `/api/usuarios` | Consultar lista o crear nuevo usuario en el sistema. |
+| **Celdas** | `GET / POST` | `/api/celdas` | Listar celdas existentes o parametrizar una nueva. |
+| **Celdas** | `PUT` | `/api/celdas/<codigo>/estado` | Modificar estado de celda (ej. pasar a MANTENIMIENTO). |
+
+## 🧪 Instrucciones para Ejecución Local
+```bash
+# 1. Ejecutar la aplicación Flask
+python app.py
